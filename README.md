@@ -20,8 +20,15 @@ Our goal is to provide a minimalistic time-tracking app for general use.
 - History
 - Time management per app
 - Defining working hours
+- Projects
 
 #### Vision:
 
 As for now, all MVP features will be free, in the feature we might want to monetize some feature, therefore create subscription plans.
 
+
+#### Design:
+
+This is how the first iteraction should look like.
+
+<img src=".github/Potem.png" height="500px" />
