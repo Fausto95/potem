@@ -62,10 +62,7 @@ class RunningAppsViewModel: ObservableObject {
             return
         }
         
-        if let found = runningApps[app.bundleIdentifier!] {
-            // App is already in the array, update its active state
-            runningApps[found.id]?.activeTime = 0
-        } else {
+        if runningApps[app.bundleIdentifier ?? ""] == nil {
             // App is not in the array, add it
             runningApps[app.bundleIdentifier!] = RunningApp(id: app.bundleIdentifier!,name: app.localizedName!, icon: app.icon!, activeTime: 0)
         }
@@ -78,7 +75,7 @@ class RunningAppsViewModel: ObservableObject {
         
         if (runningApps[app.bundleIdentifier!] != nil) {
             let activeTime = Date().timeIntervalSince(app.activationPolicy == .regular ? app.launchDate ?? Date() : Date())
-            runningApps[app.bundleIdentifier!]!.activeTime += activeTime
+            runningApps[app.bundleIdentifier!]!.activeTime = activeTime
         }
     }
 }
