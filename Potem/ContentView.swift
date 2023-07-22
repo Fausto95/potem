@@ -9,13 +9,18 @@ import SwiftUI
 
 
 struct ListView: View {
-    var registers: [Registers]
+    var data: [AppModel]
     
     var body: some View {
-        VStack {
-            Table(registers) {
-                TableColumn("App", value: \.appName)
-                TableColumn("Duration", value: \.duration)
+        List {
+            ForEach(data) { app in
+                HStack {
+                    Text(app.name)
+                        .bold()
+                        .font(.headline)
+                    Text(app.duration)
+                        .foregroundColor(.red)
+                }
             }
         }
     }
@@ -23,26 +28,28 @@ struct ListView: View {
 
 struct ContentView: View {
 
+    // @StateObject var registers = [ActiveApps]
     var body: some View {
         VStack {
-            ListView(registers: DATA_FIXTURES)
+            ListView(data: DATA_FIXTURES)
         }
     }
 }
 
-struct Registers: Identifiable {
-    var id = UUID()
-    var appName: String;
+
+struct AppModel: Identifiable {
+    var id: String = UUID().uuidString
+    var name: String;
     var duration: String;
 }
 
 let DATA_FIXTURES = [
-    Registers(appName: "VS Code", duration: "33min"),
-    Registers(appName: "Zed Preview", duration: "40min"),
-    Registers(appName: "Google Chrome", duration: "40min"),
-    Registers(appName: "Xcode", duration: "40min"),
-    Registers(appName: "Notion", duration: "40min"),
-    Registers(appName: "Arc", duration: "40min")
+    AppModel(name: "VS Code", duration: "33min"),
+    AppModel(name: "Zed Preview", duration: "40min"),
+    AppModel(name: "Google Chrome", duration: "40min"),
+    AppModel(name: "Xcode", duration: "40min"),
+    AppModel(name: "Notion", duration: "40min"),
+    AppModel(name: "Arc", duration: "40min")
 ]
 
 struct ContentView_Previews: PreviewProvider {
