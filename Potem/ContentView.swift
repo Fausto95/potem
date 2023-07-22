@@ -9,11 +9,11 @@ import SwiftUI
 
 
 struct ListView: View {
-    var data: [AppModel]
+    @ObservedObject var appViewModel: AppViewModel = AppViewModel()
     
     var body: some View {
         List {
-            ForEach(data) { app in
+            ForEach(appViewModel.apps) { app in
                 HStack {
                     Text(app.name)
                         .bold()
@@ -23,34 +23,23 @@ struct ListView: View {
                 }
             }
         }
+        .onAppear {
+            print(appViewModel.apps)
+            getAllRunningApps()
+            logApps()
+            appViewModel.getAll()
+        }
     }
 }
 
 struct ContentView: View {
 
-    // @StateObject var registers = [ActiveApps]
     var body: some View {
         VStack {
-            ListView(data: DATA_FIXTURES)
+            ListView()
         }
     }
 }
-
-
-struct AppModel: Identifiable {
-    var id: String = UUID().uuidString
-    var name: String;
-    var duration: String;
-}
-
-let DATA_FIXTURES = [
-    AppModel(name: "VS Code", duration: "33min"),
-    AppModel(name: "Zed Preview", duration: "40min"),
-    AppModel(name: "Google Chrome", duration: "40min"),
-    AppModel(name: "Xcode", duration: "40min"),
-    AppModel(name: "Notion", duration: "40min"),
-    AppModel(name: "Arc", duration: "40min")
-]
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
