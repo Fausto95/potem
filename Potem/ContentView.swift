@@ -7,15 +7,28 @@
 
 import SwiftUI
 
+
+struct ListView: View {
+    @ObservedObject var viewModel = RunningAppsViewModel()
+    
+    var body: some View {
+        List {
+            ForEach(viewModel.runningApps_.keys.sorted(), id: \.self) { key in
+                HStack {
+                    Text("\(viewModel.runningApps_[key]?.name ?? "")")
+                    Text("\(viewModel.runningApps_[key]?.activeTime.formatted() ?? "")")
+                }
+            }
+        }
+    }
+}
+
 struct ContentView: View {
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            ListView()
         }
-        .padding()
     }
 }
 
