@@ -1,3 +1,5 @@
+// These functions were ported from https://github.com/lwouis/alt-tab-macos/
+
 import Cocoa
 
 class Window {

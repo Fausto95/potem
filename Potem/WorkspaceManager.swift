@@ -1,3 +1,4 @@
+// These functions were ported from https://github.com/lwouis/alt-tab-macos/
 //
 //  WorkspaceManager.swift
 //  Potem
@@ -10,7 +11,6 @@ import AppKit
 import Cocoa
 
 
-// These functions were ported from https://github.com/lwouis/alt-tab-macos/
 func isNotXpc(_ app: NSRunningApplication) -> Bool {
     // these private APIs are more reliable than Bundle.init? as it can return nil (e.g. for com.apple.dock.etci)
     var psn = ProcessSerialNumber()

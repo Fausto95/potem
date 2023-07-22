@@ -1,3 +1,4 @@
+// These functions were ported from https://github.com/lwouis/alt-tab-macos/
 //
 //  PrivateAPIS.swift
 //  Potem
@@ -9,7 +10,6 @@ import Foundation
 import Cocoa
 
 
-// These functions were ported from https://github.com/lwouis/alt-tab-macos/
 
 // returns info about a given psn
 // * macOS 10.9-10.15 (officially removed in 10.9, but available as a private API still)
