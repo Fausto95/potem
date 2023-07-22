@@ -8,26 +8,14 @@
 import SwiftUI
 
 
-
-struct ListViewItem: View {
-    var name: String;
-    var duration: String
-
-    var body: some View {
-        HStack {
-            Text(name)
-            Text(duration)
-        }
-    }
-}
-
 struct ListView: View {
     var registers: [Registers]
     
     var body: some View {
         VStack {
-            ForEach(DATA_FIXTURES) { fixture in
-                ListViewItem(name: fixture.appName, duration: fixture.duration)
+            Table(registers) {
+                TableColumn("App", value: \.appName)
+                TableColumn("Duration", value: \.duration)
             }
         }
     }
@@ -37,15 +25,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Text("App")
-                Text("Duration")
-                
-            }
-            VStack {
-                ListView(registers: DATA_FIXTURES)
-            }
-            .padding()
+            ListView(registers: DATA_FIXTURES)
         }
     }
 }
