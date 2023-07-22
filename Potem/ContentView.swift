@@ -13,10 +13,20 @@ struct ListView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.runningApps_.keys.sorted(), id: \.self) { key in
-                HStack {
-                    Text("\(viewModel.runningApps_[key]?.name ?? "")")
-                    Text("\(viewModel.runningApps_[key]?.activeTime.formatted() ?? "")")
+            ForEach(viewModel.runningApps.sorted(by: { $0.value > $1.value }), id: \.key) { key, value in
+                VStack {
+                    HStack {
+                        HStack {
+                            Image(nsImage: value.icon )
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 5)
+                            Text("\(value.name )")
+                                .bold()
+                        }
+                        Text("\(value.activeTime.formatted() )")
+                    }
                 }
             }
         }
