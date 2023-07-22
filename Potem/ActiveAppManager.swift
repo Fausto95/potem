@@ -10,13 +10,23 @@ import Cocoa
 import AppKit
 import Combine
 
+extension TimeInterval {
+    func formatted() -> String {
+        let hours = Int(self / 3600)
+        let minutes = Int((self.truncatingRemainder(dividingBy: 3600)) / 60)
+        let hoursStr = hours != 0 ? "\(hours) hours and" : ""
+        return "\(hoursStr) \(minutes) minutes"
+    }
+}
+
 struct RunningApp {
+    let id: String
     let name: String
     var activeTime: TimeInterval
 }
 
 class RunningAppsViewModel: ObservableObject {
-    @Published var runningApps_: [RunningApp] = []
+    @Published var runningApps_: [String: RunningApp] = [:]
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -37,7 +47,9 @@ class RunningAppsViewModel: ObservableObject {
         
         runningApps_ = workspace.runningApplications.filter({ app in
             return isActualApplication(app) && app.launchDate != nil
-        }).map { RunningApp(name: $0.localizedName!, activeTime: 0) }
+        }).reduce(into: [String: RunningApp]()) { acc, app in
+            acc[app.bundleIdentifier!] = RunningApp(id: app.bundleIdentifier!, name: app.localizedName!, activeTime: 0)
+        }
     }
     
     func handleAppActivation(notification: Notification) {
@@ -45,12 +57,12 @@ class RunningAppsViewModel: ObservableObject {
             return
         }
         
-        if let index = runningApps_.firstIndex(where: { $0.name == app.localizedName! }) {
+        if let app_ = runningApps_[app.bundleIdentifier!] {
             // App is already in the array, update its active state
-            runningApps_[index].activeTime = 0
+            runningApps_[app_.id]?.activeTime = 0
         } else {
             // App is not in the array, add it
-            runningApps_.append(RunningApp(name: app.localizedName!, activeTime: 0))
+            runningApps_[app.bundleIdentifier!] = RunningApp(id: app.bundleIdentifier!,name: app.localizedName!, activeTime: 0)
         }
     }
     
@@ -59,20 +71,19 @@ class RunningAppsViewModel: ObservableObject {
             return
         }
         
-        if let index = runningApps_.firstIndex(where: { $0.name == app.localizedName! }) {
+        if (runningApps_[app.bundleIdentifier!] != nil) {
             let activeTime = Date().timeIntervalSince(app.activationPolicy == .regular ? app.launchDate ?? Date() : Date())
-            runningApps_[index].activeTime += activeTime
+            runningApps_[app.bundleIdentifier!]!.activeTime += activeTime
         }
     }
 }
 
-// Example usage
 let viewModel = RunningAppsViewModel()
 
 func logApps() {
-    for app in viewModel.runningApps_ {
+    for (_, app) in viewModel.runningApps_ {
         let hours = Int(app.activeTime / 3600)
         let minutes = Int((app.activeTime.truncatingRemainder(dividingBy: 3600)) / 60)
-        print("\(app.name ?? "") was active for \(hours) hours and \(minutes) minutes.")
+        print("\(app.name) was active for \(hours) hours and \(minutes) minutes.")
     }
 }

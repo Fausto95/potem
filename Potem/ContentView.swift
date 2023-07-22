@@ -9,25 +9,16 @@ import SwiftUI
 
 
 struct ListView: View {
-    @ObservedObject var appViewModel: AppViewModel = AppViewModel()
+    @ObservedObject var viewModel = RunningAppsViewModel()
     
     var body: some View {
         List {
-            ForEach(appViewModel.apps) { app in
+            ForEach(viewModel.runningApps_.keys.sorted(), id: \.self) { key in
                 HStack {
-                    Text(app.name)
-                        .bold()
-                        .font(.headline)
-                    Text(app.duration)
-                        .foregroundColor(.red)
+                    Text("\(viewModel.runningApps_[key]?.name ?? "")")
+                    Text("\(viewModel.runningApps_[key]?.activeTime.formatted() ?? "")")
                 }
             }
-        }
-        .onAppear {
-            print(appViewModel.apps)
-            getAllRunningApps()
-            logApps()
-            appViewModel.getAll()
         }
     }
 }
