@@ -31,6 +31,8 @@ struct RunningApp {
     var labelTime = "0min"
 }
 
+let POTEM_BUNDLE_ID = "com.potemteam.Potem"
+
 class RunningAppsViewModel: ObservableObject {
     @Published var runningApps: [String: RunningApp] = [:]
     
@@ -55,7 +57,7 @@ class RunningAppsViewModel: ObservableObject {
             return app.activationPolicy == .regular
         }).reduce(into: [String: RunningApp]()) { acc, app in
 
-            if app.localizedName != "Potem" {
+            if app.bundleIdentifier == POTEM_BUNDLE_ID {
                 acc[app.bundleIdentifier!] = RunningApp(
                     id: app.bundleIdentifier!,
                     name: app.localizedName!,
@@ -79,7 +81,7 @@ class RunningAppsViewModel: ObservableObject {
 
         } else {
             // App is not in the array, add it
-            if app.localizedName != "Potem" {
+            if app.bundleIdentifier != POTEM_BUNDLE_ID {
                 runningApps[app.bundleIdentifier!] = RunningApp(
                     id: app.bundleIdentifier!,
                     name: app.localizedName!,
