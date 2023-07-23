@@ -1,5 +1,7 @@
 # Potem 
 
+<img src=".github/App.png" height="500px" />
+
 Potem is open-source a native macOS time-tracking app.
 
 #### Stack: 

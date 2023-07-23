@@ -14,6 +14,7 @@
 		E93F579C2A60663A00E7D72A /* PotemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F579B2A60663A00E7D72A /* PotemTests.swift */; };
 		E93F57A62A60663A00E7D72A /* PotemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F57A52A60663A00E7D72A /* PotemUITests.swift */; };
 		E93F57A82A60663A00E7D72A /* PotemUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F57A72A60663A00E7D72A /* PotemUITestsLaunchTests.swift */; };
+		E95805782A6DC693005DDED2 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95805772A6DC693005DDED2 /* HeaderView.swift */; };
 		E9982E2C2A6C299C00EC7251 /* ActiveAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		E93F57A12A60663A00E7D72A /* PotemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PotemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93F57A52A60663A00E7D72A /* PotemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotemUITests.swift; sourceTree = "<group>"; };
 		E93F57A72A60663A00E7D72A /* PotemUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotemUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E95805772A6DC693005DDED2 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAppManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 				E93F57922A60663900E7D72A /* Potem.entitlements */,
 				E93F578F2A60663900E7D72A /* Preview Content */,
 				E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */,
+				E95805772A6DC693005DDED2 /* HeaderView.swift */,
 			);
 			path = Potem;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				E93F578C2A60663900E7D72A /* ContentView.swift in Sources */,
 				E93F578A2A60663900E7D72A /* PotemApp.swift in Sources */,
 				E9982E2C2A6C299C00EC7251 /* ActiveAppManager.swift in Sources */,
+				E95805782A6DC693005DDED2 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,8 @@ extension TimeInterval {
         let hours = Int(self / 3600)
         let minutes = Int((self.truncatingRemainder(dividingBy: 3600)) / 60)
         let hoursStr = hours != 0 ? "\(hours)h" : ""
-        return "\(hoursStr) \(minutes)min"
+        let minutesStr = minutes != 0 ? "\(minutes)min": hours != 0 ? "0min" : "N/A"
+        return "\(hoursStr) \(minutesStr)"
     }
 }
 
@@ -28,7 +29,6 @@ struct RunningApp {
     let name: String
     let icon: NSImage
     var activeTime: TimeInterval
-    var labelTime = "0min"
 }
 
 let POTEM_BUNDLE_ID = "com.potemteam.Potem"
@@ -75,10 +75,7 @@ class RunningAppsViewModel: ObservableObject {
         }
 
         if let foundApp = runningApps[app.bundleIdentifier ?? ""] {
-
-            runningApps[foundApp.id]?.labelTime = foundApp.activeTime.formatted()
             runningApps[foundApp.id]?.activeTime = 0;
-
         } else {
             // App is not in the array, add it
             if app.bundleIdentifier != POTEM_BUNDLE_ID {
@@ -106,6 +103,17 @@ class RunningAppsViewModel: ObservableObject {
 }
 
 let viewModel = RunningAppsViewModel()
+
+func getTotalActiveTime(data: [String: RunningApp]) -> String {
+    let total  = data.reduce(into: 0) { result, item in
+        result += item.value.activeTime
+    }
+    
+    let hours = Int(total / 3600)
+    let minutes = Int(total.truncatingRemainder(dividingBy: 3600) / 60)
+    let hoursStr = hours != 0 ? "\(hours)h" : ""
+    return "\(hoursStr) \(minutes)min"
+}
 
 func logApps() {
     for (_, app) in viewModel.runningApps {
