@@ -14,8 +14,6 @@
 		E93F579C2A60663A00E7D72A /* PotemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F579B2A60663A00E7D72A /* PotemTests.swift */; };
 		E93F57A62A60663A00E7D72A /* PotemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F57A52A60663A00E7D72A /* PotemUITests.swift */; };
 		E93F57A82A60663A00E7D72A /* PotemUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93F57A72A60663A00E7D72A /* PotemUITestsLaunchTests.swift */; };
-		E9982E242A6C188900EC7251 /* WorkspaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9982E232A6C188900EC7251 /* WorkspaceManager.swift */; };
-		E9982E262A6C1CD200EC7251 /* PrivateAPIS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9982E252A6C1CD200EC7251 /* PrivateAPIS.swift */; };
 		E9982E2C2A6C299C00EC7251 /* ActiveAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,8 +46,6 @@
 		E93F57A12A60663A00E7D72A /* PotemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PotemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93F57A52A60663A00E7D72A /* PotemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotemUITests.swift; sourceTree = "<group>"; };
 		E93F57A72A60663A00E7D72A /* PotemUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotemUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E9982E232A6C188900EC7251 /* WorkspaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceManager.swift; sourceTree = "<group>"; };
-		E9982E252A6C1CD200EC7251 /* PrivateAPIS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAPIS.swift; sourceTree = "<group>"; };
 		E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAppManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,8 +102,6 @@
 				E93F578D2A60663900E7D72A /* Assets.xcassets */,
 				E93F57922A60663900E7D72A /* Potem.entitlements */,
 				E93F578F2A60663900E7D72A /* Preview Content */,
-				E9982E232A6C188900EC7251 /* WorkspaceManager.swift */,
-				E9982E252A6C1CD200EC7251 /* PrivateAPIS.swift */,
 				E9982E2B2A6C299C00EC7251 /* ActiveAppManager.swift */,
 			);
 			path = Potem;
@@ -271,8 +265,6 @@
 				E93F578C2A60663900E7D72A /* ContentView.swift in Sources */,
 				E93F578A2A60663900E7D72A /* PotemApp.swift in Sources */,
 				E9982E2C2A6C299C00EC7251 /* ActiveAppManager.swift in Sources */,
-				E9982E242A6C188900EC7251 /* WorkspaceManager.swift in Sources */,
-				E9982E262A6C1CD200EC7251 /* PrivateAPIS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

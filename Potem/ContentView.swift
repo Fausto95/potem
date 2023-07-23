@@ -13,8 +13,8 @@ struct ListView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.runningApps.sorted(by: {
-                $0.value.activeTime > $1.value.activeTime
+            ForEach(viewModel.runningApps.sorted(by: { (lhs, rhs) -> Bool in
+                        return lhs.value.activeTime > rhs.value.activeTime
             }), id: \.key) { key, value in
                 VStack {
                     HStack {
@@ -24,11 +24,12 @@ struct ListView: View {
                                 .frame(width: 30, height: 30)
                                 .padding(.vertical, 5)
                                 .padding(.horizontal, 5)
-                            Text("\(value.name)")
+                            Text(value.name)
                                 .bold()
                         }
 
-                        Text("\(value.activeTime.formatted())")
+                        Text(value.labelTime)
+
                     }
                 }
             }
