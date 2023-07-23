@@ -13,27 +13,33 @@ struct ListView: View {
     
     var body: some View {
         List {
+            HStack {
+                Text("App")
+                Spacer()
+                Text("Time")
+            }
+                .padding(.horizontal, 5)
+                .background(Color.white)
             ForEach(viewModel.runningApps.sorted(by: { (lhs, rhs) -> Bool in
                         return lhs.value.activeTime > rhs.value.activeTime
             }), id: \.key) { key, value in
-                VStack {
+                HStack {
                     HStack {
-                        HStack {
-                            Image(nsImage: value.icon )
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                                .padding(.vertical, 5)
-                                .padding(.horizontal, 5)
-                            Text(value.name)
-                                .bold()
-                        }
-
-                        Text(value.labelTime)
-
+                        Image(nsImage: value.icon )
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                        Text(value.name)
+                            .bold()
                     }
+                    Spacer()
+                    Text(value.activeTime.formatted())
+
                 }
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 5)
             }
         }
+        .background(Color.white)
         .onAppear{
             logApps()
         }
