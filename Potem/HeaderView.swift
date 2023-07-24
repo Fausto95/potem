@@ -17,12 +17,14 @@ struct HeaderView: View {
             Text("Today")
                 .font(.title)
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 Text("Total time")
                     .bold()
-                Text(totalActiveTime)
+                Text(
+                    totalActiveTime)
                     .font(.title)
             }
+            .frame(minWidth: 50)
         }
     }
 }

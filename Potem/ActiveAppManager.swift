@@ -74,12 +74,13 @@ class RunningAppsViewModel: ObservableObject {
             return
         }
 
-        if let foundApp = runningApps[app.bundleIdentifier ?? ""] {
+        let bundleId = app.bundleIdentifier ?? ""
+        if let foundApp = runningApps[bundleId] {
             runningApps[foundApp.id]?.activeTime = 0;
         } else {
             // App is not in the array, add it
             if app.bundleIdentifier != POTEM_BUNDLE_ID {
-                runningApps[app.bundleIdentifier!] = RunningApp(
+                runningApps[bundleId] = RunningApp(
                     id: app.bundleIdentifier!,
                     name: app.localizedName!,
                     icon: app.icon!,
@@ -94,10 +95,10 @@ class RunningAppsViewModel: ObservableObject {
         guard let app = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else {
             return
         }
-
-        if (runningApps[app.bundleIdentifier!] != nil) {
+        let bundleId = app.bundleIdentifier ?? ""
+        if runningApps[bundleId] != nil {
             let activeTime = Date().timeIntervalSince(app.activationPolicy == .regular ? app.launchDate ?? Date() : Date())
-            runningApps[app.bundleIdentifier!]?.activeTime += activeTime
+            runningApps[bundleId]?.activeTime += activeTime
         }
     }
 }
